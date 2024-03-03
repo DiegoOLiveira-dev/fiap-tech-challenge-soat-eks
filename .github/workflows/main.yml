@@ -37,7 +37,9 @@ jobs:
           fi
 
       - name: Planificar Infraestrutura
+        if: ${{ variables.do_destroy != 'true' }}
         run: terraform plan -out=plano.tfplan
 
       - name: Aplicar Infraestrutura
+        if: ${{ variables.do_destroy != 'true' }}
         run: terraform apply -auto-approve plano.tfplan
