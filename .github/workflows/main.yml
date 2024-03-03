@@ -37,7 +37,6 @@ jobs:
             terraform state pull > terraform.tfstate
             terraform destroy -auto-approve
             echo "A destruição da infraestrutura não está ativada. Nenhum comando de destruição será executado."
-            exit 0
           fi
 
       # - name: Planificar Infraestrutura
