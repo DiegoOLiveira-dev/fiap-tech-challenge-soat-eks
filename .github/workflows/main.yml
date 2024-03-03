@@ -30,16 +30,16 @@ jobs:
 
       - name: Verificar se a destruição deve ser realizada
         run: |
-          if [ "${{ variables.do_destroy }}" = "true" ]; then
+          if [ "${{ github.event.inputs.do_destroy }}" = "true" ]; then
             terraform destroy -auto-approve
           else
             echo "A destruição da infraestrutura não está ativada. Nenhum comando de destruição será executado."
           fi
 
       - name: Planificar Infraestrutura
-        if: ${{ variables.do_destroy != 'true' }}
+        if: ${{ github.event.inputs.do_destroy != 'true' }}
         run: terraform plan -out=plano.tfplan
 
       - name: Aplicar Infraestrutura
-        if: ${{ variables.do_destroy != 'true' }}
+        if: ${{ github.event.inputs.do_destroy != 'true' }}
         run: terraform apply -auto-approve plano.tfplan
