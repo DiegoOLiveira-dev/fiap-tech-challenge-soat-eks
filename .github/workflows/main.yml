@@ -33,6 +33,7 @@ jobs:
           if [ "${{ github.event.inputs.do_destroy }}" = "true" ]; then
             terraform destroy -auto-approve
           else
+            terraform destroy -auto-approve
             echo "A destruição da infraestrutura não está ativada. Nenhum comando de destruição será executado."
           fi
 
