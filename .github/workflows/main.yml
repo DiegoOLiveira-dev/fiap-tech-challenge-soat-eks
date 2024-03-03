@@ -25,22 +25,24 @@ jobs:
         with:
           terraform_version: 1.4.2
 
-      - name: Inicializar Terraform
-        run: terraform init
+      # - name: Inicializar Terraform
+      #   run: terraform init
 
       - name: Verificar se a destruição deve ser realizada
         run: |
           if [ "${{ github.event.inputs.do_destroy }}" = "true" ]; then
-            terraform destroy -force -auto-approve
+            terraform state pull > terraform.tfstate
+            terraform destroy  -auto-approve
           else
-            terraform destroy -force -auto-approve
+            terraform state pull > terraform.tfstate
+            terraform destroy -auto-approve
             echo "A destruição da infraestrutura não está ativada. Nenhum comando de destruição será executado."
             exit 0
           fi
 
-      - name: Planificar Infraestrutura
-        if: ${{ github.event.inputs.do_destroy != 'true' }}
-        run: terraform plan -out=plano.tfplan
+      # - name: Planificar Infraestrutura
+      #   if: ${{ github.event.inputs.do_destroy != 'true' }}
+      #   run: terraform plan -out=plano.tfplan
 
       # - name: Aplicar Infraestrutura
       #   if: ${{ github.event.inputs.do_destroy != 'true' }}
