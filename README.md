@@ -10,3 +10,6 @@ Pre requisito para funcionamento do deploy automatico:
 - Para executar com seguranca oriento realizar um fork do projeto na sua conta e entao configurar as suas secrets da aws AWS_ACCESS_KEY_ID e AWS_SECRET_ACCESS_KEY para evitar custos inesperados na conta dos colegas.
 - Apos as configuracoes acima, para realizar o deploy basta subir um novo merge para a main.
 
+
+  teste 123
+
